@@ -25,10 +25,6 @@ public class Extrato {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long idExtrato;
 	private LocalDateTime dataHora;
-//	@Column(nullable = false)
-//	@NotNull
-//	@Size(max=45)
-//	private ContaCorrente contaCorrente;
 	@Column(nullable = false)
 	@NotNull
 	private Operacoes operacoes;
