@@ -32,6 +32,9 @@ public class Extrato {
 	@Column(nullable = false)
 	@NotNull
 	private Operacoes operacoes;
+	@Column(nullable = false)
+	@NotNull
+	private double valor;
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -39,7 +42,7 @@ public class Extrato {
 	private ContaCorrente conta;
 	
 	
-	public Extrato() {
+	public Extrato(double valor) {
 	}
 
 	public Extrato(long idExtrato, LocalDateTime dataHora, Operacoes operacoes) {
