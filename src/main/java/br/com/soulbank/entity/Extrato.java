@@ -32,7 +32,7 @@ public class Extrato {
 	@NotNull
 	private double valor;
 
-	
+	//aqui estamos mapeando um para um e introduzindo a chave estrangeira na tabela
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idContaCorrente", referencedColumnName = "idContaCorrente")
 	private ContaCorrente conta;
