@@ -17,7 +17,7 @@ import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.service.ContaServico;
 
 @RestController
-@RequestMapping
+@RequestMapping("/conta")
 public class ContaController {
 
 	@Autowired
@@ -46,24 +46,24 @@ public class ContaController {
 		return ResponseEntity.ok(servico.getById(id));
 	}
 
-	@PutMapping("/{idContaCorrente}/deposito/{valor}")
-	public ResponseEntity<String> depositando(@PathVariable Long idContaCorrente, double valor) {
+	@PutMapping("/deposito")
+	public ResponseEntity<String> depositando(@RequestBody Long idContaCorrente, double valor) {
 		return ResponseEntity.ok(servico.Depositar(valor));
 	}
 
-	@PutMapping("/{idContaCorrente}/transferindo/{valor}")
-	public ResponseEntity<String> transferindo(@PathVariable ContaCorrente contaOrigem, ContaCorrente contaDestino,
+	@PutMapping("/transferencia")
+	public ResponseEntity<String> transferindo(@RequestBody ContaCorrente contaOrigem, ContaCorrente contaDestino,
 			double valor) {
 		return ResponseEntity.ok(servico.Transferir(contaOrigem, contaDestino, valor));
 	}
 
-	@PutMapping("/{idContaCorrente}/sacar/{valor}")
-	public ResponseEntity<String> sacando(@PathVariable ContaCorrente contaOrigem, double valor) {
+	@PutMapping("/saque")
+	public ResponseEntity<String> sacando(@RequestBody ContaCorrente contaOrigem, double valor) {
 		return ResponseEntity.ok(servico.Sacar(valor));
 	}
 
-	@GetMapping("/{idContaCorrente}/visualizandoSaldo/{valor}")
-	public ResponseEntity<String> visualizandoSaldo(@PathVariable double saldoAtual) {
+	@GetMapping("/visualizandoSaldo")
+	public ResponseEntity<String> visualizandoSaldo(double saldoAtual) {
 		return ResponseEntity.ok(servico.RetornarSaldo(saldoAtual));
 	}
 
