@@ -1,8 +1,10 @@
 package br.com.soulbank.service;
 
+import java.beans.JavaBean;
 import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import br.com.soulbank.entity.Agencia;
