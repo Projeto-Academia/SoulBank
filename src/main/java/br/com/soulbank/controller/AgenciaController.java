@@ -26,7 +26,6 @@ public class AgenciaController {
 	@PostMapping
 	public ResponseEntity<Agencia> create(@RequestBody Agencia agencia){
 		agencia =  servico.save(agencia);
-		
 		return ResponseEntity.status(HttpStatus.CREATED).body(agencia);
 
 	}
