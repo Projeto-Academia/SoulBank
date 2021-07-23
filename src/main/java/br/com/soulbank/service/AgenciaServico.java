@@ -4,10 +4,7 @@ import java.beans.JavaBean;
 import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.context.annotation.Configuration;
-=======
->>>>>>> a99a32c4981f61e03ed8e1d786131555fb66fd63
 import org.springframework.stereotype.Service;
 
 import br.com.soulbank.entity.Agencia;
