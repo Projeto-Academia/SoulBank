@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import lombok.Data;
 
 @Data
@@ -25,12 +23,14 @@ public class Extrato {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long idExtrato;
 	private LocalDateTime dataHora;
+	
 	@Column(nullable = false)
 	@NotNull
 	private Operacoes operacoes;
+	
 	@Column(nullable = false)
 	@NotNull
-	private double valor;
+	private double valorOperacao;
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -38,16 +38,14 @@ public class Extrato {
 	private ContaCorrente conta;
 	
 	
-	public Extrato(double valor) {
+	public Extrato() {
 	}
 
-	public Extrato(long idExtrato, LocalDateTime dataHora, Operacoes operacoes) {
+	public Extrato(long idExtrato, LocalDateTime dataHora, Operacoes operacoes, double valorOperacao) {
 		this.idExtrato = idExtrato;
 		this.dataHora = dataHora;
-//		this.contaCorrente = contaCorrente;
 		this.operacoes = operacoes;
+		this.valorOperacao = valorOperacao;
 	}
 
 }
-
-//TESTE
