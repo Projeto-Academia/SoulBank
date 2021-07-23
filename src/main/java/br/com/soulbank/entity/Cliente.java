@@ -29,6 +29,11 @@ public class Cliente {
 	@NotNull
 	@Size(max = 14)
 	private String cpf;
+	
+	@Column(nullable = false)
+	@NotNull
+	@Size(max = 13)
+	private String fone;
 
 	@OneToOne(mappedBy = "cliente")
     private ContaCorrente conta;
