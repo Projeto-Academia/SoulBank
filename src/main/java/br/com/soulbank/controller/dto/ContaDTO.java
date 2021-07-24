@@ -8,6 +8,7 @@ import lombok.Data;
 public class ContaDTO {
 	
 	@NotNull
+	@Size(max = 5)
 	private Long idAgencia;
 	
 	@NotNull
