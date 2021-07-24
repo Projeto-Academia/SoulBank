@@ -14,20 +14,20 @@ public class AgenciaServico {
 	@Autowired
 	private AgenciaRepository agenciarepository;
 
-	//Definindo o método findAll que lista todos os clientes na lista Cliente.
-	//RETURN -> uma lista com todos os clientes registrados
+	//Definindo o método findAll que lista todas as agências.
+	//RETURN -> uma lista com todas as agências registradas
 	public List<Agencia> findAll() {
 		return agenciarepository.findAll();
 	}
 
-	//Definindo o método getById que pega um cliente específico pelo id
+	//Definindo o método getById que pega uma agência  específica pelo id
 	//RETURN -> o cliente específico ou mensagem de erro, caso o id não esteja registrado
 	public Agencia getById(Long id) {
 		return agenciarepository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException());
 	}
 
-	//Definindo o método save que salva um cliente.
+	//Definindo o método save que salva uma agência.
 	public Agencia save(Agencia agencia) {
 		return agenciarepository.save(agencia);
 	}
