@@ -1,7 +1,6 @@
 package br.com.soulbank.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -34,9 +33,11 @@ public class ContaCorrente {
 	public ContaCorrente() {
 	}
 
-	public ContaCorrente (long idContaCorrente, Cliente cliente, double saldo) {
+	public ContaCorrente (long idContaCorrente, Cliente cliente, Agencia agencia, double saldo) {
 		this.idContaCorrente = idContaCorrente;
 		this.saldo = saldo;
+		this.cliente = cliente;
+		this.agencia = agencia;
 	}
 
 }

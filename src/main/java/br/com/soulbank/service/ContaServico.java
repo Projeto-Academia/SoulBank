@@ -16,8 +16,10 @@ public class ContaServico {
 
 	@Autowired
 	private ContaRepository contaRepository;
-	
-	private ContaCorrente contaCorrente;
+	@Autowired
+	private ClienteServico cliente;
+	@Autowired
+	private AgenciaServico agencia;
 	
 	
 	public List<ContaCorrente> findAll() {
@@ -34,35 +36,38 @@ public class ContaServico {
 		
 		contaCorrente.setIdContaCorrente(contaCorrenteDTO.getIdContaCorrente());
 		contaCorrente.setSaldo(contaCorrenteDTO.getSaldo());
+		contaCorrente.setCliente(cliente.getById(contaCorrenteDTO.getIdCliente()));
+		contaCorrente.setAgencia(agencia.getById(contaCorrenteDTO.getIdAgencia()));
+		
 		return contaRepository.save(contaCorrente);
 	}
 	
-	public String Depositar(double valor) {
-		contaCorrente.setSaldo(contaCorrente.getSaldo() + valor);
+	public String Depositar(long idConta, double valor) {
+		contaRepository.getById(idConta).setSaldo(contaRepository.getById(idConta).getSaldo() + valor);
 		return "Deposito efetuado com sucesso";
 	}
 	
-	public String Sacar(double valor) {
-		if (valor > contaCorrente.getSaldo()) {
+	public String Sacar(long idContaCorrente, double valor) {
+		if (valor > contaRepository.getById(idContaCorrente).getSaldo()) {
 			return "Saldo insuficiente para realizar a operação.";
 		} else {
-			contaCorrente.setSaldo(contaCorrente.getSaldo() - valor);
+			contaRepository.getById(idContaCorrente).setSaldo(contaRepository.getById(idContaCorrente).getSaldo() - valor);
 			return "Saque efetuado!";
 		}
 	}
 	
-	public String Transferir (ContaCorrente contaOrigem, ContaCorrente contaDestino, double valorTransfer) {
-		if (contaOrigem.getSaldo() > valorTransfer) {
-			contaOrigem.setSaldo(contaOrigem.getSaldo() - valorTransfer);
-			contaDestino.setSaldo(contaDestino.getSaldo() + valorTransfer);
+	public String Transferir (long idContaOrigem, long idContaDestino, double valorTransfer) {
+		if (contaRepository.getById(idContaOrigem).getSaldo() > valorTransfer) {
+			contaRepository.getById(idContaOrigem).setSaldo(contaRepository.getById(idContaOrigem).getSaldo() - valorTransfer);
+			contaRepository.getById(idContaDestino).setSaldo(contaRepository.getById(idContaDestino).getSaldo() + valorTransfer);
 			return "Transferência realizada com sucesso!";
 		} else {
 			return "Saldo insuficiente para realizar a operação.";
 		}
 	}
 		
-	public String RetornarSaldo (double saldoAtual) {
-		return "O saldo atual é: " + contaCorrente.getSaldo();
+	public String RetornarSaldo (long idContaCorrente) {
+		return "O saldo atual é: " + contaRepository.getById(idContaCorrente).getSaldo();
 		}
 		
 		

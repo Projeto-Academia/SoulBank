@@ -23,7 +23,7 @@ public class AgenciaServico {
 	}
 
 	//Definindo o método getById que pega uma agência  específica pelo id
-	//RETURN -> o cliente específico ou mensagem de erro, caso o id não esteja registrado
+	//RETURN -> a agência específica ou mensagem de erro, caso o id não esteja registrado
 	public Agencia getById(Long id) {
 		return agenciarepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(id));

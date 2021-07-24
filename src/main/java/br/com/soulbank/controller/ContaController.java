@@ -49,24 +49,24 @@ public class ContaController {
 	}
 
 	@PutMapping("/deposito")
-	public ResponseEntity<String> depositando(@RequestBody Long idContaCorrente, double valor) {
-		return ResponseEntity.ok(servico.Depositar(valor));
+	public ResponseEntity<String> depositando(@RequestBody long idConta, double valor) {
+		return ResponseEntity.ok(servico.Depositar(idConta, valor));
 	}
 
 	@PutMapping("/transferencia")
-	public ResponseEntity<String> transferindo(@RequestBody ContaCorrente contaOrigem, ContaCorrente contaDestino,
+	public ResponseEntity<String> transferindo(@RequestBody long idContaOrigem, long idContaDestino,
 			double valor) {
-		return ResponseEntity.ok(servico.Transferir(contaOrigem, contaDestino, valor));
+		return ResponseEntity.ok(servico.Transferir(idContaOrigem, idContaDestino, valor));
 	}
 
 	@PutMapping("/saque")
-	public ResponseEntity<String> sacando(@RequestBody ContaCorrente contaOrigem, double valor) {
-		return ResponseEntity.ok(servico.Sacar(valor));
+	public ResponseEntity<String> sacando(@RequestBody long idConta, double valor) {
+		return ResponseEntity.ok(servico.Sacar(idConta, valor));
 	}
 
 	@GetMapping("/visualizandoSaldo")
-	public ResponseEntity<String> visualizandoSaldo(double saldoAtual) {
-		return ResponseEntity.ok(servico.RetornarSaldo(saldoAtual));
+	public ResponseEntity<String> visualizandoSaldo(long idConta) {
+		return ResponseEntity.ok(servico.RetornarSaldo(idConta));
 	}
 
 //ultimachave
