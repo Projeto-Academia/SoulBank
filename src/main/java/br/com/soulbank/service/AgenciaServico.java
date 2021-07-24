@@ -1,14 +1,12 @@
 package br.com.soulbank.service;
 
-import java.beans.JavaBean;
-import java.util.List;
-import javax.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
-
 import br.com.soulbank.entity.Agencia;
 import br.com.soulbank.repository.AgenciaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class AgenciaServico {

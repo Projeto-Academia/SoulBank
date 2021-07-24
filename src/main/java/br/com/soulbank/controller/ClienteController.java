@@ -1,6 +1,7 @@
 package br.com.soulbank.controller;
 
 
+import br.com.soulbank.controller.dto.ClienteDTO;
 import br.com.soulbank.entity.Cliente;
 import br.com.soulbank.service.ClienteServico;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,9 @@ public class ClienteController {
 	 * ESSE RETURN MOSTRA O STATUS DA OPERAÇÃO(200,404...) E O BODY DELA(CLIENTE QUE FOI ADICIONADO)
 	 */
 	@PostMapping
-	public ResponseEntity<Cliente> create(@RequestBody Cliente cliente){
-		cliente =  servico.save(cliente);
-		
+	public ResponseEntity<Cliente> create(@RequestBody ClienteDTO clienteDTO){
+		Cliente cliente = new Cliente();
+		cliente = servico.save(clienteDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
 	}
 	
@@ -55,9 +56,10 @@ public class ClienteController {
 	 * ok - PORQUE SÓ ESTÁ ATUALIZADO, CASO ESTIVESSE CRIANDO SERIA COMO NO Post(HttpStatus.CREATED)
 	 */
 	@PutMapping
-	public ResponseEntity<Cliente> update(@RequestBody Cliente cliente){
-		cliente = servico.save(cliente);
-		return ResponseEntity.ok(cliente);
+	public ResponseEntity<Cliente> update(@RequestBody ClienteDTO clienteDTO){
+		Cliente cliente = new Cliente();
+		cliente = servico.save(clienteDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
 	}
 	/*
 	 * DELETA ALGO PELO ID POR MAPEAMENTO(Mapping).

@@ -1,5 +1,6 @@
 package br.com.soulbank.service;
 
+import br.com.soulbank.controller.dto.ClienteDTO;
 import br.com.soulbank.entity.Cliente;
 import br.com.soulbank.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,13 @@ public class ClienteServico {
 	//Definindo o método save que salva um cliente.
 	// PELO MÉTODO, UM OBJETO CLIENTE É SALVO NA CLASSE CLIENTE.
 
-	public Cliente save(Cliente cliente) {
+	public Cliente save(ClienteDTO clienteDto) {
+		Cliente cliente = new Cliente();
+		cliente.setIdCliente(clienteDto.getIdCliente());
+		cliente.setCpf(clienteDto.getCpf());
+		cliente.setFone(clienteDto.getFone());
+		cliente.setNome(clienteDto.getNome());
+		cliente.setSobrenome(clienteDto.getSobrenome());
 		return clientrepository.save(cliente);
 	}
 

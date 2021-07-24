@@ -35,8 +35,8 @@ public class Cliente {
 	@Size(max = 13)
 	private String fone;
 
-	@OneToOne(mappedBy = "cliente")
-    private ContaCorrente conta;
+	/*@OneToOne(mappedBy = "cliente")
+    private ContaCorrente conta;*/
 	
 	
 	public Cliente() {
