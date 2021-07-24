@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.soulbank.controller.dto.ContaCorrenteDTO;
 import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.repository.ContaRepository;
 
@@ -27,7 +28,12 @@ public class ContaServico {
 		return contaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 	}
 
-	public ContaCorrente save(ContaCorrente contaCorrente) {
+	public ContaCorrente save(ContaCorrenteDTO contaCorrenteDTO) {
+		
+		ContaCorrente contaCorrente = new ContaCorrente();
+		
+		contaCorrente.setIdContaCorrente(contaCorrenteDTO.getIdContaCorrente());
+		contaCorrente.setSaldo(contaCorrenteDTO.getSaldo());
 		return contaRepository.save(contaCorrente);
 	}
 	

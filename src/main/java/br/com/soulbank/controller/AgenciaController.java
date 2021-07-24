@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.soulbank.controller.dto.AgenciaDTO;
 import br.com.soulbank.entity.Agencia;
 import br.com.soulbank.service.AgenciaServico;
 
@@ -24,15 +25,17 @@ public class AgenciaController {
 
 
 	@PostMapping
-	public ResponseEntity<Agencia> create(@RequestBody Agencia agencia){
-		agencia =  servico.save(agencia);
+	public ResponseEntity<Agencia> create(@RequestBody AgenciaDTO agenciaDTO){
+		Agencia agencia =  new Agencia();
+		agencia = servico.save(agenciaDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(agencia);
 
 	}
 	@PutMapping
-	public ResponseEntity<Agencia> update(@RequestBody Agencia agencia){
-		agencia = servico.save(agencia);
-		return ResponseEntity.ok(agencia);
+	public ResponseEntity<Agencia> update(@RequestBody AgenciaDTO agenciaDTO){
+		Agencia agencia =  new Agencia();
+		agencia = servico.save(agenciaDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(agencia);
 	}
 
 

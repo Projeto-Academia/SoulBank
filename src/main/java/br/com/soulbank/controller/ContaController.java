@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.soulbank.controller.dto.ContaCorrenteDTO;
 import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.service.ContaServico;
 
@@ -23,16 +25,17 @@ public class ContaController {
 	private ContaServico servico;
 
 	@PostMapping
-	public ResponseEntity<ContaCorrente> create(@RequestBody ContaCorrente conta) {
-		conta = servico.save(conta);
-		return ResponseEntity.status(HttpStatus.CREATED).body(conta);
-
+	public ResponseEntity<ContaCorrente> create(@RequestBody ContaCorrenteDTO contaCorrenteDTO) {
+		ContaCorrente contaCorrente = new ContaCorrente();
+		contaCorrente = servico.save(contaCorrenteDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(contaCorrente);
 	}
 
 	@PutMapping
-	public ResponseEntity<ContaCorrente> update(@RequestBody ContaCorrente conta) {
-		conta = servico.save(conta);
-		return ResponseEntity.ok(conta);
+	public ResponseEntity<ContaCorrente> update(@RequestBody ContaCorrenteDTO contaCorrenteDTO) {
+		ContaCorrente contaCorrente = new ContaCorrente();
+		contaCorrente = servico.save(contaCorrenteDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(contaCorrente);
 	}
 
 	@GetMapping
