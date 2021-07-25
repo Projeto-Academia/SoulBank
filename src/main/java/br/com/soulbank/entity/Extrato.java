@@ -20,10 +20,10 @@ import lombok.Data;
 public class Extrato {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idExtrato;
 	
-	private LocalDateTime dataHora;
+	private String dataHora;
 	
 	@Column(nullable = false)
 	@NotNull
@@ -43,7 +43,7 @@ public class Extrato {
 	public Extrato() {
 	}
 
-	public Extrato(ContaCorrente conta, long idExtrato, LocalDateTime dataHora, Operacoes operacoes, double valorOperacao) {
+	public Extrato(ContaCorrente conta, long idExtrato, String dataHora, Operacoes operacoes, double valorOperacao) {
 		this.conta = conta;
 		this.idExtrato = idExtrato;
 		this.dataHora = dataHora;

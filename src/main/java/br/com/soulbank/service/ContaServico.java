@@ -1,10 +1,14 @@
 package br.com.soulbank.service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.soulbank.controller.dto.ContaCorrenteDTO;
 import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.entity.Extrato;
@@ -24,6 +28,7 @@ public class ContaServico {
 	@Autowired
 	private ExtratoRepository extratoRepository;
 	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 	
 	public List<ContaCorrente> findAll() {
 		return contaRepository.findAll();
@@ -52,7 +57,7 @@ public class ContaServico {
 		extrato.setConta(contaRepository.getById(idContaCorrente));
 		extrato.setOperacoes(Operacoes.DEPOSITAR);
 		extrato.setValorOperacao(valor);
-		extrato.setDataHora(LocalDateTime.now());
+		extrato.setDataHora(LocalDateTime.now().format(formatter));
 		
 		extratoRepository.save(extrato);
 		
@@ -69,7 +74,7 @@ public class ContaServico {
 			extrato.setConta(contaRepository.getById(idContaCorrente));
 			extrato.setOperacoes(Operacoes.SACAR);
 			extrato.setValorOperacao(valor);
-			extrato.setDataHora(LocalDateTime.now());
+			extrato.setDataHora(LocalDateTime.now().format(formatter));
 			
 			extratoRepository.save(extrato);
 			
@@ -81,11 +86,13 @@ public class ContaServico {
 		if (contaRepository.getById(idContaOrigem).getSaldo() > valorTransfer) {
 			contaRepository.getById(idContaOrigem).setSaldo(contaRepository.getById(idContaOrigem).getSaldo() - valorTransfer);
 			
+			
+			
 			Extrato extrato = new Extrato();
 			extrato.setConta(contaRepository.getById(idContaDestino));
 			extrato.setOperacoes(Operacoes.TRANFERIR);
 			extrato.setValorOperacao(valorTransfer);
-			extrato.setDataHora(LocalDateTime.now());
+			extrato.setDataHora(LocalDateTime.now().format(formatter));
 			extratoRepository.save(extrato);
 			
 			contaRepository.getById(idContaDestino).setSaldo(contaRepository.getById(idContaDestino).getSaldo() + valorTransfer);

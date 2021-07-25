@@ -1,30 +1,24 @@
 package br.com.soulbank.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import br.com.soulbank.entity.Extrato;
-import br.com.soulbank.repository.ExtratoRepository;
+import org.springframework.ui.Model;
+import br.com.soulbank.service.ExtratoServico;
 
-@RestController
-@RequestMapping("/extrato")
+@Controller
+
 public class ExtratoController {
-	
+
 	@Autowired
-	private ExtratoRepository extrato;
+	private ExtratoServico extrato;
+
+	@RequestMapping("/extrato")
+	public String listar(Model model) {
+
+		model.addAttribute("extrato", extrato.findAll());
 		
-		@GetMapping
-		public ModelAndView listar() {
-			List<Extrato> listaextrato= extrato.findAll();
-			
-			ModelAndView modelAndView = new ModelAndView("extrato");		
-			modelAndView.addObject("extrato", listaextrato);
-			
-			return modelAndView;
-		}
+		return "extrato";
 	}
+}
 

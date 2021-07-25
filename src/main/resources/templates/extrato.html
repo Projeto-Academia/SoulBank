@@ -18,7 +18,7 @@
         <table class="table-content">
           <thead>
             <tr>
-              <th>ID cliente</th>
+              <th>ID</th>
               <th> Data/Hora</th>
               <th> Operacao</th>
               <th> Valor</th>
@@ -26,11 +26,11 @@
           </thead>
 
           <tbody>
-            <tr th:each="extratocliente: ${soulbank}">
-  			  <td th:text="${extratocliente.idConta}"></td>
-              <td th:text="${extratocliente.dataHora}"></td> //DATA DA OPERAÇÃO
-              <td th:text="${extratocliente.operacoes}"></td>   //TIPO DE OPERAÇÃO
-              <td th:text="${extratocliente.valorOperacao}"></td>          //VALOR DA OPERAÇÃO
+            <tr th:each="extratocliente: ${extrato}">
+  			  <td th:text="${extratocliente.idExtrato}"></td>
+              <td th:text="${extratocliente.dataHora}"></td>
+              <td th:text="${extratocliente.operacoes}"></td> 
+              <td th:text="${extratocliente.valorOperacao}"></td>
             </tr>
           </tbody>
         </table>
