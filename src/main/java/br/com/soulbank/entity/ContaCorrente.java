@@ -25,10 +25,6 @@ public class ContaCorrente {
 	private Cliente cliente;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "conta")
-    private Extrato extrato;
-	
-	@JsonIgnore
 	@JoinColumn(name = "idAgencia")
 	@ManyToOne(targetEntity = Agencia.class)
 	private Agencia agencia;
