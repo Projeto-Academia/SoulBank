@@ -3,6 +3,8 @@ package br.com.soulbank.service;
 import br.com.soulbank.controller.dto.ClienteDTO;
 import br.com.soulbank.entity.Cliente;
 import br.com.soulbank.repository.ClienteRepository;
+import br.com.soulbank.service.exceptions.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +51,7 @@ public class ClienteServico {
 
 
 	public Cliente getById(Long id) {
-		return clientrepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		return clientrepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	//Definindo o método save que salva um cliente.
