@@ -3,12 +3,9 @@ package br.com.soulbank.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.soulbank.controller.dto.ContaCorrenteDTO;
 import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.entity.Extrato;
@@ -61,7 +58,7 @@ public class ContaServico {
 		
 		extratoRepository.save(extrato);
 		
-		return "Deposito efetuado com sucesso";
+		return "Deposito efetuado com sucesso!";
 	}
 	
 	public String Sacar(long idContaCorrente, double valor) {
@@ -103,6 +100,14 @@ public class ContaServico {
 	}
 		
 	public String RetornarSaldo (long idContaCorrente) {
+		
+		Extrato extrato = new Extrato();
+		extrato.setConta(contaRepository.getById(idContaCorrente));
+		extrato.setOperacoes(Operacoes.SALDOATUAL);
+		extrato.setValorOperacao(contaRepository.getById(idContaCorrente).getSaldo());
+		extrato.setDataHora(LocalDateTime.now().format(formatter));
+		extratoRepository.save(extrato);
+		
 		return "O saldo atual é: " + contaRepository.getById(idContaCorrente).getSaldo();
 		}
 			
