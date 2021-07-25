@@ -70,8 +70,8 @@ public class ClienteController {
 	 *  NESTE CASO É O {id}.
 	 */
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		servico.delete(id);
+	public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+		servico.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	

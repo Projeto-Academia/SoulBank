@@ -56,7 +56,9 @@ public class ClienteServico {
 	// PELO MÉTODO, UM OBJETO CLIENTE É SALVO NA CLASSE CLIENTE.
 
 	public Cliente save(ClienteDTO clienteDto) {
+		
 		Cliente cliente = new Cliente();
+		
 		cliente.setIdCliente(clienteDto.getIdCliente());
 		cliente.setCpf(clienteDto.getCpf());
 		cliente.setFone(clienteDto.getFone());
@@ -70,9 +72,5 @@ public class ClienteServico {
 		clientrepository.deleteById(id);
 	}
 
-	// PELO MÉTODO, UM OBJETO CLIENTE É DELETADO PELO ID NA CLASSE CLIENTE.
-	public void delete(Long id) {
-		clientrepository.deleteById(id);
-	}
 
 }

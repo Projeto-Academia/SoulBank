@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.soulbank.controller.dto.ContaCorrenteDTO;
 import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.service.ContaServico;
 
@@ -24,16 +25,17 @@ public class ContaController {
 	private ContaServico servico;
 
 	@PostMapping
-	public ResponseEntity<ContaCorrente> create(@RequestBody ContaCorrente conta) {
-		conta = servico.save(conta);
-		return ResponseEntity.status(HttpStatus.CREATED).body(conta);
-
+	public ResponseEntity<ContaCorrente> create(@RequestBody ContaCorrenteDTO contaCorrenteDTO) {
+		ContaCorrente contaCorrente = new ContaCorrente();
+		contaCorrente = servico.save(contaCorrenteDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(contaCorrente);
 	}
 
 	@PutMapping
-	public ResponseEntity<ContaCorrente> update(@RequestBody ContaCorrente conta) {
-		conta = servico.save(conta);
-		return ResponseEntity.ok(conta);
+	public ResponseEntity<ContaCorrente> update(@RequestBody ContaCorrenteDTO contaCorrenteDTO) {
+		ContaCorrente contaCorrente = new ContaCorrente();
+		contaCorrente = servico.save(contaCorrenteDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(contaCorrente);
 	}
 
 	@GetMapping
@@ -47,24 +49,24 @@ public class ContaController {
 	}
 
 	@PutMapping("/deposito")
-	public ResponseEntity<String> depositando(@RequestBody Long idContaCorrente, double valor) {
-		return ResponseEntity.ok(servico.Depositar(valor));
+	public ResponseEntity<String> depositando(@RequestBody long idConta, double valor) {
+		return ResponseEntity.ok(servico.Depositar(idConta, valor));
 	}
 
 	@PutMapping("/transferencia")
-	public ResponseEntity<String> transferindo(@RequestBody ContaCorrente contaOrigem, ContaCorrente contaDestino,
+	public ResponseEntity<String> transferindo(@RequestBody long idContaOrigem, long idContaDestino,
 			double valor) {
-		return ResponseEntity.ok(servico.Transferir(contaOrigem, contaDestino, valor));
+		return ResponseEntity.ok(servico.Transferir(idContaOrigem, idContaDestino, valor));
 	}
 
 	@PutMapping("/saque")
-	public ResponseEntity<String> sacando(@RequestBody ContaCorrente contaOrigem, double valor) {
-		return ResponseEntity.ok(servico.Sacar(valor));
+	public ResponseEntity<String> sacando(@RequestBody long idConta, double valor) {
+		return ResponseEntity.ok(servico.Sacar(idConta, valor));
 	}
 
 	@GetMapping("/visualizandoSaldo")
-	public ResponseEntity<String> visualizandoSaldo(double saldoAtual) {
-		return ResponseEntity.ok(servico.RetornarSaldo(saldoAtual));
+	public ResponseEntity<String> visualizandoSaldo(long idConta) {
+		return ResponseEntity.ok(servico.RetornarSaldo(idConta));
 	}
 
 //ultimachave
