@@ -4,6 +4,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @Entity
 @SequenceGenerator(name = "idContaGen", sequenceName = "idContaGen", initialValue = 20000)
@@ -18,14 +20,15 @@ public class ContaCorrente {
 	@NotNull
 	private double saldo;
 	
-	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
 	private Cliente cliente;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "conta")
     private Extrato extrato;
 	
+	@JsonIgnore
 	@JoinColumn(name = "idAgencia")
 	@ManyToOne(targetEntity = Agencia.class)
 	private Agencia agencia;

@@ -22,6 +22,7 @@ public class Extrato {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long idExtrato;
+	
 	private LocalDateTime dataHora;
 	
 	@Column(nullable = false)
@@ -33,6 +34,7 @@ public class Extrato {
 	private double valorOperacao;
 
 	//aqui estamos mapeando um para um e introduzindo a chave estrangeira na tabela
+	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idContaCorrente", referencedColumnName = "idContaCorrente")
 	private ContaCorrente conta;
@@ -41,7 +43,8 @@ public class Extrato {
 	public Extrato() {
 	}
 
-	public Extrato(long idExtrato, LocalDateTime dataHora, Operacoes operacoes, double valorOperacao) {
+	public Extrato(ContaCorrente conta, long idExtrato, LocalDateTime dataHora, Operacoes operacoes, double valorOperacao) {
+		this.conta = conta;
 		this.idExtrato = idExtrato;
 		this.dataHora = dataHora;
 		this.operacoes = operacoes;

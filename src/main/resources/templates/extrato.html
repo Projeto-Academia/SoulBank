@@ -27,7 +27,7 @@
 
           <tbody>
             <tr th:each="extratocliente: ${soulbank}">
-  			  <td th:text="${extratocliente.idCliente}"></td>
+  			  <td th:text="${extratocliente.idConta}"></td>
               <td th:text="${extratocliente.dataHora}"></td> //DATA DA OPERAÇÃO
               <td th:text="${extratocliente.operacoes}"></td>   //TIPO DE OPERAÇÃO
               <td th:text="${extratocliente.valorOperacao}"></td>          //VALOR DA OPERAÇÃO

@@ -1,7 +1,6 @@
 package br.com.soulbank.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.soulbank.entity.Extrato;
@@ -23,7 +22,6 @@ public class ExtratoServico {
 		return extratorepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
-
 
 	public Extrato save(Extrato extrato) {
 
