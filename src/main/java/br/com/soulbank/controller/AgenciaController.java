@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,14 +30,7 @@ public class AgenciaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(agencia);
 
 	}
-	@PutMapping
-	public ResponseEntity<Agencia> update(@RequestBody AgenciaDTO agenciaDTO){
-		Agencia agencia =  new Agencia();
-		agencia = servico.save(agenciaDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(agencia);
-	}
-
-
+	
 	@GetMapping
 	public ResponseEntity<List<Agencia>> getAll() {
 		return ResponseEntity.ok(servico.findAll());
