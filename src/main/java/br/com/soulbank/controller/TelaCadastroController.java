@@ -15,14 +15,14 @@ public class TelaCadastroController {
 	@Autowired
 	private TelaCadastroRepository telaCadastroRepository;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/telacadastro");
+	//@RequestMapping(method = RequestMethod.GET, value = "/telacadastro");
 	public String inicio() {
 		return "/cadastro/telacadastro";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/salvarcadastro")
 	public String salvar(ClienteDTO clienteDTO) {
-		telaCadastroCliente.save(clienteDTO);
+		//telaCadastroCliente.save(clienteDTO);
 		return "cadastro/telacadastro";
 	}
 
