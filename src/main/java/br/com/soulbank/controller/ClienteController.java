@@ -1,5 +1,6 @@
 package br.com.soulbank.controller;
 
+
 import br.com.soulbank.controller.dto.ClienteDTO;
 import br.com.soulbank.entity.Cliente;
 import br.com.soulbank.service.ClienteServico;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 /*
  * ANOTAÇÃO QUE INDICA QUE É UMA CLASSE DE CONTROLE.
  * 
@@ -21,9 +21,10 @@ import java.util.List;
 //ANOTAÇÃO QUE IMPLEMENTA A URL.
 @RequestMapping("/cliente")
 public class ClienteController {
-
-	// INJEÇÃO DE DEPEDÊNCIAS(DE UMA CLASSE EM OUTRA)
-	// TÁ IMPLEMENTANDO A CLASSE SERVIÇO NA CONTROLLER.
+	
+	
+	//INJEÇÃO DE DEPEDÊNCIAS(DE UMA CLASSE EM OUTRA)
+	//TÁ IMPLEMENTANDO A CLASSE SERVIÇO NA CONTROLLER.
 	@Autowired
 	private ClienteServico servico;
 
@@ -36,48 +37,56 @@ public class ClienteController {
 	 * 
 	 * servico - É O NOME DADO A CLASSE ClienteServico.
 	 * 
-	 * cliente = servico.save(cliente); - POR MEIO DO MÉTODO servico.save(cliente) O
-	 * OBJETO cliente CRIADO PELA REQUISIÇÃO FEITA PELO @REQUESTBODY ESTÁ SENDO
-	 * ADICIONADO NO OBJETO CLIENTE.
+	 * cliente =  servico.save(cliente); - POR MEIO DO MÉTODO servico.save(cliente) O OBJETO cliente CRIADO PELA REQUISIÇÃO FEITA PELO @REQUESTBODY ESTÁ SENDO ADICIONADO NO OBJETO CLIENTE.
 	 * 
-	 * ESSE RETURN MOSTRA O STATUS DA OPERAÇÃO(200,404...) E O BODY DELA(CLIENTE QUE
-	 * FOI ADICIONADO)
+	 * ESSE RETURN MOSTRA O STATUS DA OPERAÇÃO(200,404...) E O BODY DELA(CLIENTE QUE FOI ADICIONADO)
 	 */
 	@PostMapping
-	public ResponseEntity<Cliente> create(@RequestBody ClienteDTO clienteDTO) {
-		Cliente cliente = new Cliente();
-		cliente = servico.save(clienteDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+	public ResponseEntity<String> create(@RequestBody ClienteDTO clienteDTO){
+		servico.save(clienteDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Cliente cadastrado com sucesso");
 	}
-
+	
+	/*
+	 * PutMapping - FAZ UM UPDATE(ATUALIZAR) EM ALGUM DADO.
+	 * 
+	 * O RETURN VAI RETORNAR O CLIENTE ATUALIZADO.
+	 * 
+	 * ok - PORQUE SÓ ESTÁ ATUALIZADO, CASO ESTIVESSE CRIANDO SERIA COMO NO Post(HttpStatus.CREATED)
+	 */
+//	@PutMapping
+//	public ResponseEntity<Cliente> update(@RequestBody ClienteDTO clienteDTO){
+//		Cliente cliente = new Cliente();
+//		cliente = servico.save(clienteDTO);
+//		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
+//	}
 	/*
 	 * DELETA ALGO PELO ID POR MAPEAMENTO(Mapping).
 	 * 
 	 * ID VAI EM CHAVE("/{id}") PORQUE É PARAMÊTRO DO HTTP.
 	 * 
 	 * PathVariable - É UTILIZADO QUANDO PASSAMOS VALOR DE UMA VARIÁVEL NO HTTP,
-	 * NESTE CASO É O {id}.
+	 *  NESTE CASO É O {id}.
 	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable Long id) {
 		servico.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
-
+	
 	/*
 	 * GetMapping - MOSTRA TODOS OS DADOS.
 	 * 
-	 * O MÉTODO ResponseEntity TEM O TIPO LISTA, QUE, POR SUA VEZ, É DO TIPO
-	 * CLIENTE. ASSIM ELE VAI PEGAR TODOS OS CLIENTES DA LISTA(getAll).
+	 * O MÉTODO ResponseEntity TEM O TIPO LISTA, QUE, POR SUA VEZ, 
+	 * É DO TIPO CLIENTE. ASSIM ELE VAI PEGAR TODOS OS CLIENTES DA LISTA(getAll).
 	 * 
-	 * RETURN - ESTÁ RETORNANDO A CONFIRMAÇÃO MAIS TODOS OS CLIENTES(PELO MÉTODO
-	 * serviço.findAll().
+	 * RETURN - ESTÁ RETORNANDO A CONFIRMAÇÃO MAIS TODOS OS CLIENTES(PELO MÉTODO serviço.findAll().
 	 */
 	@GetMapping
 	public ResponseEntity<List<Cliente>> getAll() {
 		return ResponseEntity.ok(servico.findAll());
 	}
-
+	
 	/*
 	 * MOSTRA O DADO REFERENTE AO ID.
 	 * 
@@ -87,5 +96,5 @@ public class ClienteController {
 	public ResponseEntity<Cliente> getById(@PathVariable Long id) {
 		return ResponseEntity.ok(servico.getById(id));
 	}
-
+	
 }
