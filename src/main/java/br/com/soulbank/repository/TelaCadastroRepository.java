@@ -1,11 +1,11 @@
 package br.com.soulbank.repository;
 
-import br.com.soulbank.entity.Extrato;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
+import br.com.soulbank.entity.Cliente;
 
 @Repository
-public interface ExtratoRepository extends JpaRepository<Extrato, Long> {
+
+public interface TelaCadastroRepository extends JpaRepository<Cliente, Long> {
 
 }
