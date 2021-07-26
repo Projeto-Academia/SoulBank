@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.soulbank.entity.ContaCorrente;
 import br.com.soulbank.entity.Operacoes;
 import lombok.Data;
@@ -12,6 +14,7 @@ import lombok.Data;
 public class ExtratoDTO {
 
 	@NotNull
+	@JsonIgnore
 	private long idExtrato;
 	private LocalDateTime dataEHora;
 	

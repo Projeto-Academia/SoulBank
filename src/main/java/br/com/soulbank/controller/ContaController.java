@@ -31,13 +31,6 @@ public class ContaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(contaCorrente);
 	}
 
-	@PutMapping
-	public ResponseEntity<ContaCorrente> update(@RequestBody ContaCorrenteDTO contaCorrenteDTO) {
-		ContaCorrente contaCorrente = new ContaCorrente();
-		contaCorrente = servico.save(contaCorrenteDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(contaCorrente);
-	}
-
 	@GetMapping
 	public ResponseEntity<List<ContaCorrente>> getAll() {
 		return ResponseEntity.ok(servico.findAll());
