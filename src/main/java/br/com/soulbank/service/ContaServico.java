@@ -3,7 +3,6 @@ package br.com.soulbank.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.soulbank.controller.dto.ContaCorrenteDTO;
@@ -12,6 +11,7 @@ import br.com.soulbank.entity.Extrato;
 import br.com.soulbank.entity.Operacoes;
 import br.com.soulbank.repository.ContaRepository;
 import br.com.soulbank.repository.ExtratoRepository;
+import br.com.soulbank.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class ContaServico {
@@ -32,7 +32,7 @@ public class ContaServico {
 	}
 
 	public ContaCorrente getById(Long id) {
-		return contaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		return contaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	public ContaCorrente save(ContaCorrenteDTO contaCorrenteDTO) {

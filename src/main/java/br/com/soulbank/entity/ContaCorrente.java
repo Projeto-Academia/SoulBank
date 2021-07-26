@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
-@SequenceGenerator(name = "idContaGen", sequenceName = "idContaGen", initialValue = 20000)
 @Table(name = "conta")
 public class ContaCorrente {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "idContaGen", sequenceName = "idContaGen", initialValue = 20000)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idContaGen")
 	private long idContaCorrente;
 	
 	@Column(nullable = false)

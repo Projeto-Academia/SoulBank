@@ -1,15 +1,16 @@
 package br.com.soulbank.service;
 
-import br.com.soulbank.controller.dto.ClienteDTO;
-import br.com.soulbank.entity.Cliente;
-import br.com.soulbank.repository.ClienteRepository;
-import br.com.soulbank.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.List;
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.soulbank.controller.dto.ClienteDTO;
+import br.com.soulbank.entity.Cliente;
+import br.com.soulbank.repository.ClienteRepository;
+import br.com.soulbank.service.exceptions.ResourceNotFoundException;
 
 
 //Colocando anotação @Service para indicar que a classe é Service.
@@ -58,9 +59,9 @@ public class ClienteServico {
 	// PELO MÉTODO, UM OBJETO CLIENTE É SALVO NA CLASSE CLIENTE.
 
 	public Cliente save(ClienteDTO clienteDto) {
-		
+
 		Cliente cliente = new Cliente();
-		
+
 		cliente.setIdCliente(clienteDto.getIdCliente());
 		cliente.setCpf(clienteDto.getCpf());
 		cliente.setFone(clienteDto.getFone());
@@ -74,5 +75,19 @@ public class ClienteServico {
 		clientrepository.deleteById(id);
 	}
 
+	//Método para validar o CPF
+	public boolean validaCPF(String cpf) {
 
+		CPFValidator cpfValidator = new CPFValidator();
+
+		cpfValidator.assertValid(cpf);
+		List<ValidationMessage> erros = cpfValidator.invalidMessagesFor(cpf); 
+
+		if (erros.size() > 0) {
+			return false;
+		}
+		return true;
+	}
+
+	
 }
