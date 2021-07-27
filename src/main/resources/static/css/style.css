@@ -1,0 +1,16 @@
+body {
+    background-color: #181f29;
+}
+
+.nav-wrapper {
+    background-color: #181f29;
+}
+
+.container {
+    margin-top: 20px;
+    color: white;
+}
+
+.waves-effect.waves-light.btn {
+    background-color: rgb(127, 54, 156);
+}

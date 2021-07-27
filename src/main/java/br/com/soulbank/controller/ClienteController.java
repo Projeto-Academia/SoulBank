@@ -41,11 +41,12 @@ public class ClienteController {
 	 * 
 	 * ESSE RETURN MOSTRA O STATUS DA OPERAÇÃO(200,404...) E O BODY DELA(CLIENTE QUE FOI ADICIONADO)
 	 */
-	@PostMapping
-	public ResponseEntity<String> create(@RequestBody ClienteDTO clienteDTO){
-		servico.save(clienteDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Cliente cadastrado com sucesso");
-	}
+	
+//	@PostMapping
+//	public ResponseEntity<String> create(@RequestBody ClienteDTO clienteDTO){
+//		servico.save(clienteDTO);
+//		return ResponseEntity.status(HttpStatus.CREATED).body("Cliente cadastrado com sucesso");
+//	}
 	
 	/*
 	 * PutMapping - FAZ UM UPDATE(ATUALIZAR) EM ALGUM DADO.

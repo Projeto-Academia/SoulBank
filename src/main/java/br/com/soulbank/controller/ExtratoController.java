@@ -24,4 +24,3 @@ public class ExtratoController {
 		return "extrato";
 	}
 }
-
