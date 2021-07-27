@@ -97,5 +97,4 @@ public class ClienteController {
 	public ResponseEntity<Cliente> getById(@PathVariable Long id) {
 		return ResponseEntity.ok(servico.getById(id));
 	}
-	
 }
