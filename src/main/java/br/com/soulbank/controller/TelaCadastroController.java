@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TelaCadastroController {
 	
-	@Autowired
+	/*@Autowired
 	private TelaCadastroRepository telaCadastroRepository;
 
 	//@RequestMapping(method = RequestMethod.GET, value = "/telacadastro");
@@ -26,7 +26,7 @@ public class TelaCadastroController {
 		return "cadastro/telacadastro";
 	}
 
-	/*@RequestMapping("/telaCadastro")
+	@RequestMapping("/telaCadastro")
 	public String listar(Model model) {
 
 		model.addAttribute("telaCadastroCliente", telaCadastro.findAll());
