@@ -1,27 +1,29 @@
-package br.com.soulbank.controller.dto;
-
-import java.time.LocalDateTime;
-
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import br.com.soulbank.entity.ContaCorrente;
-import br.com.soulbank.entity.Operacoes;
-import lombok.Data;
-
-@Data
-public class ExtratoDTO {
-
-	@NotNull
-	@JsonIgnore
-	private long idExtrato;
-	private LocalDateTime dataEHora;
-	
-	@NotNull
-	private Operacoes operacoes;
-	
-	private ContaCorrente conta;
-	
-	
-}
+//package br.com.soulbank.controller.dto;
+//
+//import br.com.soulbank.entity.Extrato;
+//import br.com.soulbank.entity.Operacoes;
+//import lombok.Data;
+//
+//@Data
+//public class ExtratoDTO {
+//	
+//	private long idExtrato;
+//	private String dataEHora;
+//	private Operacoes operacoes;
+//	private long idConta;
+//	
+//	
+//	public ExtratoDTO() {
+//		
+//	}
+//	
+//	
+//	public ExtratoDTO(Extrato extrato) {
+//		this.idExtrato = extrato.getIdExtrato();
+//		this.dataEHora = extrato.getDataHora();
+//		this.operacoes = extrato.getOperacoes();
+//		this.idConta = extrato.getConta().getIdContaCorrente();
+//	}
+//	
+//	
+//}

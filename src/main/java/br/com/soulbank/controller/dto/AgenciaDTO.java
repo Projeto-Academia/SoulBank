@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class AgenciaDTO {
 	
-	@JsonIgnore
+	
     private Long idAgencia;
 
     @NotNull
