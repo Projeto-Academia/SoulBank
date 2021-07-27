@@ -47,7 +47,7 @@ public class ContaController {
 	}
 
 	@PutMapping("/transferencia")
-	public ResponseEntity<String> transferindo(@RequestBody long idContaOrigem, long idContaDestino,
+	public ResponseEntity<String> transferindo(long idContaOrigem, long idContaDestino,
 			double valor) {
 		return ResponseEntity.ok(servico.Transferir(idContaOrigem, idContaDestino, valor));
 	}

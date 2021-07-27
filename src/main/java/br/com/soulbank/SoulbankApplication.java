@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EntityScan(basePackages = {"br.com.soulbank.entity"})
-@EnableWebMvc
 public class SoulbankApplication {
 
 	public static void main(String[] args) {
