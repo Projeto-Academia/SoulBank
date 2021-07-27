@@ -11,8 +11,6 @@ import br.com.soulbank.repository.ExtratoRepository;
 @Controller
 public class ExtratoController {
 
-//	@Autowired
-//	private ExtratoServico extrato;
 	@Autowired
 	private ExtratoRepository extrato;
 
