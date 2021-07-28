@@ -1,16 +1,96 @@
-body {
-    background-color: #181f29;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
 
-.nav-wrapper {
+body{
     background-color: #181f29;
-}
-
-.container {
-    margin-top: 20px;
     color: white;
+    font-weight: 750px;
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
-.waves-effect.waves-light.btn {
-    background-color: rgb(127, 54, 156);
+.img{
+    margin-left: 45vw;
+    margin-top: 0;
+    width:40vw;
+    position: fixed;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:50vw;
+    margin-top: 0;
+    margin-left:5vw;
+}
+
+h3{
+    text-align: center;
+    color:#636FA4;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: 3em;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+form input{
+    width: 300px;
+    height: 40px;
+    background-color:#101c2c;
+    padding: 0 0.5em;
+    outline: #181f29;
+    color: whitesmoke;
+    font-size:17px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    margin-bottom:0;
+}
+
+td{
+	margin-top:18px;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+tr{
+	 display: flex;
+    flex-direction: column;
+}
+
+button{
+    background-color: #636FA4;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 35px;
+    text-align: center;
+    margin-left: 1px;
+    margin-top: 8px;
+    border: none;
+    font-size:15px;
+    height: 3vw;
+}
+
+button:hover{
+    background-color: #E8CBC0;
+}
+
+section .circulo{
+    position:fixed;
+    width: 127%;
+    height: 100%;
+    background: linear-gradient(45deg, #E8CBC0, #636FA4) ;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    clip-path: circle(40% at right 60%);
+    z-index: -1;
 }
