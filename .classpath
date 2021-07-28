@@ -3,11 +3,6 @@
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="optional" value="true"/>
-<<<<<<< HEAD
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="output" path="bin"/>
-=======
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="ignore_optional_problems" value="true"/>
 			<attribute name="m2e-apt" value="true"/>
@@ -51,5 +46,4 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
->>>>>>> ff943f5663cb570774476117b50209638de332eb
 </classpath>
