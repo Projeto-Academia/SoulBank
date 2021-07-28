@@ -1,18 +1,21 @@
 package br.com.soulbank.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import br.com.caelum.stella.ValidationMessage;
+
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.soulbank.controller.dto.ClienteDTO;
 import br.com.soulbank.entity.Cliente;
 import br.com.soulbank.repository.ClienteRepository;
 import br.com.soulbank.service.exceptions.DataBaseException;
+import br.com.soulbank.service.exceptions.InvalidCPFException;
 import br.com.soulbank.service.exceptions.ResourceNotFoundException;
+import br.com.soulbank.service.exceptions.ValorNuloException;
 
 
 
@@ -60,18 +63,22 @@ public class ClienteServico {
 	// PELO MÉTODO, UM OBJETO CLIENTE É SALVO NA CLASSE CLIENTE.
 
 	public void save(ClienteDTO clienteDto) {
-			
-		if (validaCPF(clienteDto.getCpf())) {
-			Cliente cliente = new Cliente();
-			cliente.setIdCliente(clienteDto.getIdCliente());
-			cliente.setCpf(clienteDto.getCpf());
-			cliente.setFone(clienteDto.getFone());
-			cliente.setNome(clienteDto.getNome());
-			cliente.setSobrenome(clienteDto.getSobrenome());
-			
-			clientrepository.save(cliente);
+
+		try {
+			if (validaCPF(clienteDto.getCpf())) {
+				Cliente cliente = new Cliente();
+				cliente.setIdCliente(clienteDto.getIdCliente());
+				cliente.setCpf(clienteDto.getCpf());
+				cliente.setFone(clienteDto.getFone());
+				cliente.setNome(clienteDto.getNome());
+				cliente.setSobrenome(clienteDto.getSobrenome());
+
+				clientrepository.save(cliente);
+			}
 		}
-		
+		catch(DataIntegrityViolationException e) {
+			throw new ValorNuloException(clienteDto);		
+		}
 	}
 
 	// Definindo o método delete que deleta um cliente específico.
@@ -84,19 +91,19 @@ public class ClienteServico {
 	public static boolean validaCPF(String cpf) {
 
 		CPFValidator cpfValidator = new CPFValidator();
-
-		cpfValidator.assertValid(cpf);
-		List<ValidationMessage> erros = cpfValidator.invalidMessagesFor(cpf); 
-
-		if (erros.size() > 0) {
-			throw new InvalidStateException(erros);
+		try {
+			cpfValidator.assertValid(cpf);
+			return true;
 		}
+		catch(InvalidStateException e) {
+			throw new InvalidCPFException(cpf);
+		}
+
 		
-		return true;
 	}
-	
+
 	public void deleteById(long id) {
-		
+
 		try {
 			clientrepository.deleteById(id);
 		} 
@@ -108,6 +115,6 @@ public class ClienteServico {
 		}
 
 	}
-//ultimachave
+	//ultimachave
 
 }

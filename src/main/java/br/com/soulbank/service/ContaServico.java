@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.soulbank.controller.dto.ContaCorrenteDTO;
@@ -16,6 +17,7 @@ import br.com.soulbank.entity.Operacoes;
 import br.com.soulbank.repository.ContaRepository;
 import br.com.soulbank.repository.ExtratoRepository;
 import br.com.soulbank.service.exceptions.ResourceNotFoundException;
+import br.com.soulbank.service.exceptions.ValorNuloException;
 
 @Service
 public class ContaServico {
@@ -41,14 +43,20 @@ public class ContaServico {
 
 	public ContaCorrente save(ContaCorrenteDTO contaCorrenteDTO) {
 
-		ContaCorrente contaCorrente = new ContaCorrente();
+		try {
+			ContaCorrente contaCorrente = new ContaCorrente();
 
-		contaCorrente.setIdContaCorrente(contaCorrenteDTO.getIdContaCorrente());
-		contaCorrente.setSaldo(contaCorrenteDTO.getSaldo());
-		contaCorrente.setCliente(cliente.getById(contaCorrenteDTO.getIdCliente()));
-		contaCorrente.setAgencia(agencia.getById(contaCorrenteDTO.getIdAgencia()));
+			contaCorrente.setIdContaCorrente(contaCorrenteDTO.getIdContaCorrente());
+			contaCorrente.setSaldo(contaCorrenteDTO.getSaldo());
+			contaCorrente.setCliente(cliente.getById(contaCorrenteDTO.getIdCliente()));
+			contaCorrente.setAgencia(agencia.getById(contaCorrenteDTO.getIdAgencia()));
 
-		return contaRepository.save(contaCorrente);
+			return contaRepository.save(contaCorrente);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new ValorNuloException(contaCorrenteDTO);		
+		}
+
 	}
 
 	public String Depositar(long idContaCorrente, double valor) {
@@ -134,14 +142,20 @@ public class ContaServico {
 
 	public String RetornarSaldo (long idContaCorrente) {
 
-		Extrato extrato = new Extrato();
-		extrato.setConta(contaRepository.getById(idContaCorrente));
-		extrato.setOperacoes(Operacoes.SALDOATUAL);
-		extrato.setValorOperacao(contaRepository.getById(idContaCorrente).getSaldo());
-		extrato.setDataHora(LocalDateTime.now().format(formatter));
-		extratoRepository.save(extrato);
+		try {
+			Extrato extrato = new Extrato();
+			extrato.setConta(contaRepository.getById(idContaCorrente));
+			extrato.setOperacoes(Operacoes.SALDOATUAL);
+			extrato.setValorOperacao(contaRepository.getById(idContaCorrente).getSaldo());
+			extrato.setDataHora(LocalDateTime.now().format(formatter));
+			extratoRepository.save(extrato);
 
-		return "O saldo atual é: " + contaRepository.getById(idContaCorrente).getSaldo();
+			return "O saldo atual é: " + contaRepository.getById(idContaCorrente).getSaldo();	
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(idContaCorrente);
+		}
+		
 	}
 
 	//ultima chave	

@@ -4,15 +4,17 @@ import br.com.soulbank.controller.dto.AgenciaDTO;
 import br.com.soulbank.entity.Agencia;
 import br.com.soulbank.repository.AgenciaRepository;
 import br.com.soulbank.service.exceptions.ResourceNotFoundException;
+import br.com.soulbank.service.exceptions.ValorNuloException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AgenciaServico {
-	
+
 	@Autowired
 	private AgenciaRepository agenciarepository;
 
@@ -31,15 +33,21 @@ public class AgenciaServico {
 
 	//Definindo o método save que salva uma agência.
 	public Agencia save(AgenciaDTO agenciaDTO) {
-		
-		Agencia agencia = new Agencia();
-		
-		agencia.setIdAgencia(agenciaDTO.getIdAgencia());
-		agencia.setNomeDaAgencia(agenciaDTO.getNomeDaAgencia());
-		agencia.setEndereco(agenciaDTO.getEndereco());
-		agencia.setTelefone(agenciaDTO.getTelefone());
-		return agenciarepository.save(agencia);
+
+		try {
+			Agencia agencia = new Agencia();
+
+			agencia.setIdAgencia(agenciaDTO.getIdAgencia());
+			agencia.setNomeDaAgencia(agenciaDTO.getNomeDaAgencia());
+			agencia.setEndereco(agenciaDTO.getEndereco());
+			agencia.setTelefone(agenciaDTO.getTelefone());
+			return agenciarepository.save(agencia);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new ValorNuloException(agenciaDTO);		
+		}
+
 	}
-	
+
 	//Não colocamos delete na agência porque ela não pode ser deletada.
 }

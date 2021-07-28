@@ -5,10 +5,10 @@ public class ResourceNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     public ResourceNotFoundException(Object id) {
-        super ("Resource not found. Id: " + id);
+        super ("ID não encontrado. Id: " + id);
     }
     
     public ResourceNotFoundException(Object id1, Object id2) {
-        super ("Resource not found. Id: " + id1 + " e " + id2);
+        super ("Não existem contas com os IDs solicitaos. ID: " + id1 + " e " + id2);
     }
 }
