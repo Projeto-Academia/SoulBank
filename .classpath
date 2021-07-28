@@ -46,6 +46,6 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/flavi/Downloads/lombok.jar"/>
+	<classpathentry kind="lib" path="C:/Users/franc/Desktop/PROJETO/lombok.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
