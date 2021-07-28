@@ -1,5 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
 
+
+@media (max-width: 750px) {
+    main{
+        display: flex;
+        flex-direction: column;
+        margin-left: 25vw;
+        margin-bottom: 0vw;
+    }
+
+    main h3{
+        padding-top: 5vw;
+        display: inline-block;
+        width: 290px;
+        height: 50px;
+        padding-bottom: 7vw;
+    }
+
+    .img{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        position:relative;
+    }
+    
+    form{
+		margin-left: 55vw;
+		margin-right: 45vw;
+		
+	}
+}
+
 body{
     background-color: #181f29;
     color: white;
