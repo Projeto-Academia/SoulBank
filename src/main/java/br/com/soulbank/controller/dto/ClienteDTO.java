@@ -4,6 +4,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -24,6 +26,7 @@ public class ClienteDTO {
     @Size(max = 45)
     private String sobrenome;
 
+    @CPF(message="CPF inválido")
     @NotNull(message ="O campo 'CPF' não pode estar vazio.")
     @NotEmpty(message ="O campo 'CPF' não pode estar vazio.")
     @Size(min = 14 , max = 14, message ="CPF deve estar no formato XXX.XXX.XXX-XX")
