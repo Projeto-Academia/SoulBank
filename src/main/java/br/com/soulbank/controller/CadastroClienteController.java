@@ -45,6 +45,5 @@ public class CadastroClienteController implements WebMvcConfigurer {
 		}
 		
 			return "redirect:/errocpf";
-		
 	}
 }
