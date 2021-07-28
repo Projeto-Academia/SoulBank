@@ -31,14 +31,20 @@ public class CadastroClienteController implements WebMvcConfigurer {
 
 	@PostMapping("/cadastrocliente")
 	public String checkPersonInfo(@Valid ClienteDTO clienteDTO, BindingResult bindingResult) {
-
+		
 		if (bindingResult.hasErrors()) {
 			
 			return "cadastrocliente";
 		}
 		
-		clienteServ.save(clienteDTO);
+		if (ClienteServico.validaCPF(clienteDTO.getCpf())){
+			
+			clienteServ.save(clienteDTO);
+			
+			return "redirect:/cadastrado";
+		}
 		
-		return "redirect:/cadastrado";
+			return "redirect:/errocpf";
+		
 	}
 }
