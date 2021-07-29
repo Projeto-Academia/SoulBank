@@ -25,7 +25,6 @@ public class AgenciaDTO {
     @Size(max = 14)
     private String telefone;
 
-
     public AgenciaDTO(long idAgencia, String nomeDaAgencia, String endereco, String telefone) {
     	this.idAgencia = idAgencia;
     	this.nomeDaAgencia = nomeDaAgencia;
