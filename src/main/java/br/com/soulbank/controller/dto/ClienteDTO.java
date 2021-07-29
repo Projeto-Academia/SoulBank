@@ -37,4 +37,14 @@ public class ClienteDTO {
     @Size(max = 13)
     private String fone;
 
+	public ClienteDTO(Long idCliente, String nome, String sobrenome, String cpf, String fone) {
+		this.idCliente = idCliente;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.cpf = cpf;
+		this.fone = fone;
+	}
+
+    
+    
 }

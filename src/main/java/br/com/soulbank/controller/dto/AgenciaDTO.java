@@ -26,5 +26,11 @@ public class AgenciaDTO {
     private String telefone;
 
 
+    public AgenciaDTO(long idAgencia, String nomeDaAgencia, String endereco, String telefone) {
+    	this.idAgencia = idAgencia;
+    	this.nomeDaAgencia = nomeDaAgencia;
+    	this.endereco = endereco;
+    	this.telefone = telefone;
+    }
 }
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:href="@{/css/estilo.css}" rel="stylesheet" > 
+    <title>EXTRATO</title>
+</head>
+<body>
+	<img th:src="@{/remove.png}" class="logo"/>
+    <main>
+      <div class="container">
+        <h1>EXTRATO BANCÁRIO</h1>
+
+        <table class="table-content">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th> Data/Hora</th>
+              <th> Operacao</th>
+              <th> Valor</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="extratocliente: ${extrato}">
+  			  <td th:text="${extratocliente.idExtrato}"></td>
+              <td th:text="${extratocliente.dataHora}"></td>
+              <td th:text="${extratocliente.operacoes}"></td> 
+              <td th:text="${extratocliente.valorOperacao}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

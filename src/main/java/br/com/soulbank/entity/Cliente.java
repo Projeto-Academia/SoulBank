@@ -39,11 +39,12 @@ public class Cliente {
 	public Cliente() {
 	}
 
-	public Cliente(long idCliente, String nome, String sobrenome, String cpf) {
+	public Cliente(long idCliente, String nome, String sobrenome, String cpf, String fone) {
 		this.idCliente = idCliente;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.cpf = cpf;
+		this.fone = fone;
 	}
 
 }

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
+
+@media (max-width: 750px) {
+    main{
+        display: flex;
+        flex-direction: column;
+        margin-left: 25vw;
+        margin-bottom: 0vw;
+    }
+
+    main h3{
+        padding-top: 5vw;
+        display: inline-block;
+        width: 290px;
+        height: 50px;
+        padding-bottom: 7vw;
+    }
+
+    .img{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        position:relative;
+    }
+    
+    form{
+		margin-left: 55vw;
+		margin-right: 45vw;
+		
+	}
+}
+
+body{
+    background-color: #181f29;
+    color: white;
+    font-weight: 750px;
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.img{
+    margin-left: 45vw;
+    margin-top: 0;
+    width:40vw;
+    position: fixed;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:50vw;
+    margin-top: 0;
+    margin-left:5vw;
+}
+
+h3{
+    text-align: center;
+    color:#636FA4;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: 3em;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+form input{
+    width: 300px;
+    height: 40px;
+    background-color:#101c2c;
+    padding: 0 0.5em;
+    outline: #181f29;
+    color: whitesmoke;
+    font-size:17px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    margin-bottom:0;
+}
+
+td{
+	margin-top:18px;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+tr{
+	 display: flex;
+    flex-direction: column;
+}
+
+button{
+    background-color: #636FA4;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 35px;
+    text-align: center;
+    margin-left: 1px;
+    margin-top: 8px;
+    border: none;
+    font-size:15px;
+    height: 3vw;
+}
+
+button:hover{
+    background-color: #E8CBC0;
+}
+
+button:active {
+  background-color: #E8CBC0;
+  box-shadow: 0 5px rgb(0, 0, 0);
+  transform: translateY(4px);
+}
+
+
+section .circulo{
+    position:fixed;
+    width: 127%;
+    height: 100%;
+    background: linear-gradient(45deg, #E8CBC0, #636FA4) ;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    clip-path: circle(40% at right 60%);
+    z-index: -1;
+}

@@ -23,4 +23,13 @@ public class ContaCorrenteDTO {
 	@NotNull
 	@Size(max = 5)
 	private Long idCliente;
+
+	public ContaCorrenteDTO(long idContaCorrente, double saldo, Long idAgencia, Long idCliente) {
+		this.idContaCorrente = idContaCorrente;
+		this.saldo = saldo;
+		this.idAgencia = idAgencia;
+		this.idCliente = idCliente;
+	}
+	
+	
 }
