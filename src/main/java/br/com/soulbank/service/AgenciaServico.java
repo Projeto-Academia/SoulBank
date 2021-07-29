@@ -1,16 +1,17 @@
 package br.com.soulbank.service;
 
+import java.util.List;
+
+import javax.validation.ConstraintViolationException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.soulbank.controller.dto.AgenciaDTO;
 import br.com.soulbank.entity.Agencia;
 import br.com.soulbank.repository.AgenciaRepository;
 import br.com.soulbank.service.exceptions.ResourceNotFoundException;
 import br.com.soulbank.service.exceptions.ValorNuloException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AgenciaServico {
@@ -43,7 +44,7 @@ public class AgenciaServico {
 			agencia.setTelefone(agenciaDTO.getTelefone());
 			return agenciarepository.save(agencia);
 		}
-		catch(DataIntegrityViolationException e) {
+		catch(ConstraintViolationException e) {
 			throw new ValorNuloException(agenciaDTO);		
 		}
 

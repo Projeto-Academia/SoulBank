@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
 import br.com.soulbank.controller.dto.ContaCorrenteDTO;
@@ -53,8 +53,10 @@ public class ContaServico {
 
 			return contaRepository.save(contaCorrente);
 		}
-		catch(DataIntegrityViolationException e) {
-			throw new ValorNuloException(contaCorrenteDTO);		
+		catch(InvalidDataAccessApiUsageException e) {
+			throw new ValorNuloException(contaCorrenteDTO);	
+//			e.printStackTrace();
+//			return null;
 		}
 
 	}

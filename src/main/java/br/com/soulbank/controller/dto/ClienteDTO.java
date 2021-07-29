@@ -27,9 +27,6 @@ public class ClienteDTO {
     private String sobrenome;
 
     @CPF(message="CPF inválido")
-    @NotNull(message ="O campo 'CPF' não pode estar vazio.")
-    @NotEmpty(message ="O campo 'CPF' não pode estar vazio.")
-    @Size(min = 14 , max = 14, message ="CPF deve estar no formato XXX.XXX.XXX-XX")
     private String cpf;
 
     @NotNull(message ="O campo 'telefone' não pode estar vazio.")
