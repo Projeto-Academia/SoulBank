@@ -44,7 +44,7 @@ public class ResourceExceptionHandler {
 	}
 	
 	@ExceptionHandler(InvalidCPFException.class)
-	public ResponseEntity<StandardError> invalidCPF(ValorNuloException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> invalidCPF(InvalidCPFException e, HttpServletRequest request) {
 		String error = "O CPF digitado é invalido.";
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError moment = new StandardError(Instant.now(), status.value(), error, e.getMessage(),

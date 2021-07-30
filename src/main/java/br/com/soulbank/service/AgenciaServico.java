@@ -19,20 +19,15 @@ public class AgenciaServico {
 	@Autowired
 	private AgenciaRepository agenciarepository;
 
-	//Definindo o método findAll que lista todas as agências.
-	//RETURN -> uma lista com todas as agências registradas
 	public List<Agencia> findAll() {
 		return agenciarepository.findAll();
 	}
 
-	//Definindo o método getById que pega uma agência  específica pelo id
-	//RETURN -> a agência específica ou mensagem de erro, caso o id não esteja registrado
 	public Agencia getById(Long id) {
 		return agenciarepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
-	//Definindo o método save que salva uma agência.
 	public Agencia save(AgenciaDTO agenciaDTO) {
 
 		try {

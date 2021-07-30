@@ -55,8 +55,6 @@ public class ContaServico {
 		}
 		catch(InvalidDataAccessApiUsageException e) {
 			throw new ValorNuloException(contaCorrenteDTO);	
-//			e.printStackTrace();
-//			return null;
 		}
 
 	}
@@ -159,6 +157,5 @@ public class ContaServico {
 		}
 		
 	}
-
-	//ultima chave	
+	
 }
