@@ -1,4 +1,4 @@
-package br.com.soulbank.controller.exceptions;
+package br.com.soulbank.resources.exceptions;
 
 import java.time.Instant;
 import javax.servlet.http.HttpServletRequest;
